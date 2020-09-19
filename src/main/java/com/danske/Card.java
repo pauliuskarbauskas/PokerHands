@@ -1,6 +1,6 @@
 package com.danske;
 
-public class Card {
+public class Card implements Comparable<Card> {
 	
 	// Instance Variables
 	private int value;
@@ -35,6 +35,18 @@ public class Card {
 	@Override
 	public String toString() {
 		return "Card [value=" + value + ", suit=" + suit + "]";
+	}
+	
+	@Override
+	public int compareTo(Card other) {
+
+		if (this.value < other.value) {
+			return -1;
+		} else if (this.value > other.value) {
+			return 1;
+		}
+		
+		return 0;
 	}
 
 }

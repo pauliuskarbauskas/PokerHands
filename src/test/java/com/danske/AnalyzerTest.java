@@ -70,14 +70,28 @@ public class AnalyzerTest {
 		
 		// reset hand values to have poker of 10
 		defaultHand[1].setValue(10);
-		defaultHand[1].setSuit(Suit.HEART);
 		defaultHand[2].setValue(10);
-		defaultHand[2].setSuit(Suit.DIAMOND);
 		defaultHand[3].setValue(10);
-		defaultHand[3].setSuit(Suit.CLUB);
+		
+		assertTrue(Analyzer.isFourOfKind(defaultHand));
+		
+		// test (9, 10, 10, 10, 10)
+		defaultHand[0].setValue(9);
+		defaultHand[4].setValue(10);
 		
 		assertTrue(Analyzer.isFourOfKind(defaultHand));
 		
 	}
+	
+//	@Test
+//	public void testThreeOfKind() {
+//		
+//		// reset to three of kind (10, 10, 10, K, A)
+//		defaultHand[1].setValue(10);
+//		defaultHand[2].setValue(10);
+//		
+//		assertTrue(Analyzer.isThreeOfKind(defaultHand));
+//
+//	}
 
 }

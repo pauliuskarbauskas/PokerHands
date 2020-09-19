@@ -63,15 +63,32 @@ public class Analyzer {
 	 */
 	public static boolean isFourOfKind(Card[] hand) {
 		
-		boolean result = true;
+		int firstCard = hand[0].getValue();
+		int lastCard = hand[4].getValue();
 		
-		for (int i = 0; i < 3; i++) {
-			if (hand[i].getValue() != hand[i+1].getValue()) {
-				result = false;
-			}
+		if (firstCard == hand[1].getValue() && firstCard == hand[2].getValue() && firstCard == hand[3].getValue()) {
+			return true;
 		}
 		
-		return result;
+		if (lastCard == hand[2].getValue() && lastCard == hand[3].getValue() && lastCard == hand[3].getValue()) {
+			return true;
+		}
+		
+		return false;
+		
 	}
+	
+//	public static boolean isThreeOfKind(Card[] hand) {
+//		
+//		boolean result = true;
+//		
+//		for (int i = 0; i < 2; i++) {
+//			if (hand[i].getValue() != hand[i+1].getValue()) {
+//				result = false;
+//			}
+//		}
+//		
+//		return result;
+//	}
 
 }

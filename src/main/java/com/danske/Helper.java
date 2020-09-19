@@ -3,6 +3,7 @@ package com.danske;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -55,6 +56,9 @@ public class Helper {
 		for(int i = 0; i < 5; i++) {
 			hand2[i] = createCard(parts[i+5]);
 		}
+		
+		Arrays.sort(hand1);
+		Arrays.sort(hand2);
 		
 		hands.add(hand1);
 		hands.add(hand2);
