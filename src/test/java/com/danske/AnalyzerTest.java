@@ -106,5 +106,30 @@ public class AnalyzerTest {
 		assertTrue(Analyzer.isThreeOfKind(defaultHand));
 
 	}
+	
+	@Test
+	public void testTwoPair() {
+		
+		// test (10, 10, 11, 11, A)
+		defaultHand[1].setValue(10);
+		defaultHand[2].setValue(11);
+		defaultHand[3].setValue(11);
+		
+		assertTrue(Analyzer.isTwoPair(defaultHand));
+		
+		// test (10, 10, 11, A, A)
+		defaultHand[1].setValue(10);
+		defaultHand[2].setValue(11);
+		defaultHand[3].setValue(14);
+		
+		assertTrue(Analyzer.isTwoPair(defaultHand));
+		
+		// test (10, 11, 11, A, A)
+		defaultHand[1].setValue(11);
+		defaultHand[2].setValue(11);
+		defaultHand[3].setValue(14);
+		
+		assertTrue(Analyzer.isTwoPair(defaultHand));
+	}
 
 }

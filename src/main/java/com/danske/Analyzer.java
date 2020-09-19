@@ -78,6 +78,11 @@ public class Analyzer {
 		
 	}
 	
+	/**
+	 * Determines if hand is Three of Kind
+	 * @param hand
+	 * @return boolean
+	 */
 	public static boolean isThreeOfKind(Card[] hand) {
 		
 		int firstCard = hand[0].getValue();
@@ -96,6 +101,23 @@ public class Analyzer {
 			return true;
 		}
 
+		return false;
+	}
+	
+	public static boolean isTwoPair(Card[] hand) {
+		
+		if (hand[0].getValue() == hand[1].getValue() && hand[2].getValue() == hand[3].getValue()) {
+			return true;
+		}
+		
+		if (hand[0].getValue() == hand[1].getValue() && hand[3].getValue() == hand[4].getValue()) {
+			return true;
+		}
+		
+		if (hand[1].getValue() == hand[2].getValue() && hand[3].getValue() == hand[4].getValue()) {
+			return true;
+		}
+		
 		return false;
 	}
 
