@@ -9,8 +9,9 @@ public class Poker {
 		List<String> data = Helper.readHands();
 
 		for (String a: data) {
-			System.out.println(a);
+			List<Card[]> hands = Helper.parseHands(a);
 		}
+		
 	}
 
 }

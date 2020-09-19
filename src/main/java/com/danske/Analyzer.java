@@ -7,16 +7,16 @@ public class Analyzer {
 	 * @param hand
 	 * @return boolean
 	 */
-	public static boolean isHandStright(Card[] hand) {
+	public static boolean isHandStright(Hand hand) {
 		
 		boolean result = true;
 		
 		for (int i = 0; i < 4; i++) {
-			if (hand[i].getValue() != hand[i+1].getValue() - 1) {
+			if (hand.getHand()[i].getValue() != hand.getHand()[i+1].getValue() - 1) {
 				result = false;
 			}
 		}
-		
+				
 		return result;
 	}
 	
@@ -25,12 +25,12 @@ public class Analyzer {
 	 * @param hand
 	 * @return boolean
 	 */
-	public static boolean isHandFlush(Card[] hand) {
+	public static boolean isHandFlush(Hand hand) {
 		
 		boolean result = true;
 		
 		for (int i = 0; i < 4; i++) {
-			if (hand[i].getSuit() != hand[i+1].getSuit()) {
+			if (hand.getHand()[i].getSuit() != hand.getHand()[i+1].getSuit()) {
 				result = false;
 			}
 		}
@@ -43,8 +43,16 @@ public class Analyzer {
 	 * @param hand
 	 * @return boolean
 	 */
-	public static boolean isHandRoyalFlush(Card[] hand) {
-		return isHandFlush(hand) && isHandStright(hand) && hand[4].getValue() == 14;
+	public static boolean isHandRoyalFlush(Hand hand) {
+		
+		boolean result = false;
+		
+		if (isHandFlush(hand) && isHandStright(hand) && hand.getHand()[4].getValue() == 14) {
+			result = true;
+			hand.setRank(10);
+		}
+		
+		return result;
 	}
 	
 	/**
@@ -52,8 +60,16 @@ public class Analyzer {
 	 * @param hand
 	 * @return boolean
 	 */
-	public static boolean isHandStraightFlush(Card[] hand) {
-		return isHandFlush(hand) && isHandStright(hand);
+	public static boolean isHandStraightFlush(Hand hand) {
+		
+		boolean result = false;
+		
+		if (isHandFlush(hand) && isHandStright(hand) && hand.getHand()[4].getValue() != 14) {
+			result = true;
+			hand.setRank(9);
+		}
+		
+		return result;
 	}
 	
 	/**
@@ -61,16 +77,20 @@ public class Analyzer {
 	 * @param hand
 	 * @return
 	 */
-	public static boolean isFourOfKind(Card[] hand) {
+	public static boolean isFourOfKind(Hand hand) {
 		
-		int firstCard = hand[0].getValue();
-		int lastCard = hand[4].getValue();
+		int firstCard = hand.getHand()[0].getValue();
+		int lastCard = hand.getHand()[4].getValue();
 		
-		if (firstCard == hand[1].getValue() && firstCard == hand[2].getValue() && firstCard == hand[3].getValue()) {
+		if (firstCard == hand.getHand()[1].getValue() &&
+			firstCard == hand.getHand()[2].getValue() &&
+			firstCard == hand.getHand()[3].getValue()) {
 			return true;
 		}
 		
-		if (lastCard == hand[2].getValue() && lastCard == hand[3].getValue() && lastCard == hand[3].getValue()) {
+		if (lastCard == hand.getHand()[2].getValue() &&
+			lastCard == hand.getHand()[3].getValue() &&
+			lastCard == hand.getHand()[3].getValue()) {
 			return true;
 		}
 		
@@ -83,21 +103,21 @@ public class Analyzer {
 	 * @param hand
 	 * @return boolean
 	 */
-	public static boolean isThreeOfKind(Card[] hand) {
+	public static boolean isThreeOfKind(Hand hand) {
 		
-		int firstCard = hand[0].getValue();
-		int secondCard = hand[1].getValue();
-		int thirdCard = hand[4].getValue();
+		int firstCard = hand.getHand()[0].getValue();
+		int secondCard = hand.getHand()[1].getValue();
+		int thirdCard = hand.getHand()[4].getValue();
 		
-		if(firstCard == hand[1].getValue() && firstCard == hand[2].getValue()) {
+		if(firstCard == hand.getHand()[1].getValue() && firstCard == hand.getHand()[2].getValue()) {
 			return true;
 		}
 		
-		if(secondCard == hand[2].getValue() && secondCard == hand[3].getValue()) {
+		if(secondCard == hand.getHand()[2].getValue() && secondCard == hand.getHand()[3].getValue()) {
 			return true;
 		}
 		
-		if(thirdCard == hand[3].getValue() && thirdCard == hand[4].getValue()) {
+		if(thirdCard == hand.getHand()[3].getValue() && thirdCard == hand.getHand()[4].getValue()) {
 			return true;
 		}
 
@@ -109,17 +129,17 @@ public class Analyzer {
 	 * @param hand
 	 * @return boolean
 	 */
-	public static boolean isTwoPair(Card[] hand) {
+	public static boolean isTwoPair(Hand hand) {
 		
-		if (hand[0].getValue() == hand[1].getValue() && hand[2].getValue() == hand[3].getValue()) {
+		if (hand.getHand()[0].getValue() == hand.getHand()[1].getValue() && hand.getHand()[2].getValue() == hand.getHand()[3].getValue()) {
 			return true;
 		}
 		
-		if (hand[0].getValue() == hand[1].getValue() && hand[3].getValue() == hand[4].getValue()) {
+		if (hand.getHand()[0].getValue() == hand.getHand()[1].getValue() && hand.getHand()[3].getValue() == hand.getHand()[4].getValue()) {
 			return true;
 		}
 		
-		if (hand[1].getValue() == hand[2].getValue() && hand[3].getValue() == hand[4].getValue()) {
+		if (hand.getHand()[1].getValue() == hand.getHand()[2].getValue() && hand.getHand()[3].getValue() == hand.getHand()[4].getValue()) {
 			return true;
 		}
 		
@@ -131,21 +151,21 @@ public class Analyzer {
 	 * @param hand
 	 * @return boolean
 	 */
-	public static boolean isOnePair(Card[] hand) {
+	public static boolean isOnePair(Hand hand) {
 		
-		if (hand[0].getValue() == hand[1].getValue()) {
+		if (hand.getHand()[0].getValue() == hand.getHand()[1].getValue()) {
 			return true;
 		}
 		
-		if (hand[1].getValue() == hand[2].getValue()) {
+		if (hand.getHand()[1].getValue() == hand.getHand()[2].getValue()) {
 			return true;
 		}
 		
-		if (hand[2].getValue() == hand[3].getValue()) {
+		if (hand.getHand()[2].getValue() == hand.getHand()[3].getValue()) {
 			return true;
 		}
 		
-		if (hand[3].getValue() == hand[4].getValue()) {
+		if (hand.getHand()[3].getValue() == hand.getHand()[4].getValue()) {
 			return true;
 		}
 		
@@ -157,23 +177,28 @@ public class Analyzer {
 	 * @param hand
 	 * @return boolean
 	 */
-	public static boolean isFullHouse(Card[] hand) {
+	public static boolean isFullHouse(Hand hand) {
 		
-		if (hand[0].getValue() == hand[1].getValue() && 
-			hand[2].getValue() == hand[3].getValue() &&
-			hand[2].getValue() == hand[4].getValue()) {
+		if (hand.getHand()[0].getValue() == hand.getHand()[1].getValue() && 
+			hand.getHand()[2].getValue() == hand.getHand()[3].getValue() &&
+			hand.getHand()[2].getValue() == hand.getHand()[4].getValue()) {
 			
 			return true;
 		}
 		
-		if (hand[0].getValue() == hand[1].getValue() && 
-			hand[0].getValue() == hand[2].getValue() &&
-			hand[3].getValue() == hand[4].getValue()) {
+		if (hand.getHand()[0].getValue() == hand.getHand()[1].getValue() && 
+			hand.getHand()[0].getValue() == hand.getHand()[2].getValue() &&
+			hand.getHand()[3].getValue() == hand.getHand()[4].getValue()) {
 				
 			return true;
 		}
 		
 		return false;
+	}
+	
+	public static boolean analyze(Hand hand1, Hand hand2) {
+		return hand1.getRank() > hand2.getRank();
+		
 	}
 	
 //	public static int getHighCard(Card[] hand) {

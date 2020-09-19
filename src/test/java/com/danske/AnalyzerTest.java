@@ -9,6 +9,7 @@ import org.junit.Test;
 public class AnalyzerTest {
 	
 	private Card[] defaultHand;
+	private Hand iHand;
 
 	@Before
 	public void setUp() throws Exception {
@@ -20,6 +21,9 @@ public class AnalyzerTest {
 		defaultHand[2] = new Card(12, Suit.SPADE);
 		defaultHand[3] = new Card(13, Suit.SPADE);
 		defaultHand[4] = new Card(14, Suit.SPADE);
+		
+		iHand = new Hand();
+		iHand.setHand(defaultHand);
 	}
 
 	@After
@@ -30,56 +34,61 @@ public class AnalyzerTest {
 	@Test
 	public void testStraight() {
 		
-		assertTrue(Analyzer.isHandStright(defaultHand));
+		assertTrue(Analyzer.isHandStright(iHand));
 		
 		defaultHand[0].setValue(1);
-		assertFalse(Analyzer.isHandStright(defaultHand));
+		assertFalse(Analyzer.isHandStright(iHand));
 	}
 	
 	@Test
 	public void testFlush() {
 		
-		assertTrue(Analyzer.isHandFlush(defaultHand));
+		assertTrue(Analyzer.isHandFlush(iHand));
 		
 		defaultHand[0].setSuit(Suit.DIAMOND);
-		assertFalse(Analyzer.isHandFlush(defaultHand));
+		assertFalse(Analyzer.isHandFlush(iHand));
 	}
 	
 	@Test
 	public void testRoyalFlush() {
 		
-		assertTrue(Analyzer.isHandRoyalFlush(defaultHand));
+		assertTrue(Analyzer.isHandRoyalFlush(iHand));
 		
 		defaultHand[0].setValue(1);
-		assertFalse(Analyzer.isHandRoyalFlush(defaultHand));
+		assertFalse(Analyzer.isHandRoyalFlush(iHand));
 	}
 	
 	@Test
 	public void testStraightFlush() {
 		
-		assertTrue(Analyzer.isHandStraightFlush(defaultHand));
+		defaultHand[0].setValue(2);
+		defaultHand[1].setValue(3);
+		defaultHand[2].setValue(4);
+		defaultHand[3].setValue(5);
+		defaultHand[4].setValue(6);
+		assertTrue(Analyzer.isHandStraightFlush(iHand));
 		
-		defaultHand[0].setValue(1);
-		assertFalse(Analyzer.isHandStraightFlush(defaultHand));
+		defaultHand[4].setValue(14);
+		assertFalse(Analyzer.isHandStraightFlush(iHand));
 	}
 	
 	@Test
 	public void testFourOfKind() {
 		
-		assertFalse(Analyzer.isFourOfKind(defaultHand));
+		assertFalse(Analyzer.isFourOfKind(iHand));
 		
 		// reset hand values to have poker of 10
 		defaultHand[1].setValue(10);
 		defaultHand[2].setValue(10);
 		defaultHand[3].setValue(10);
 		
-		assertTrue(Analyzer.isFourOfKind(defaultHand));
+		assertTrue(Analyzer.isFourOfKind(iHand));
 		
 		// test (9, 10, 10, 10, 10)
 		defaultHand[0].setValue(9);
 		defaultHand[4].setValue(10);
 		
-		assertTrue(Analyzer.isFourOfKind(defaultHand));
+		assertTrue(Analyzer.isFourOfKind(iHand));
 		
 	}
 	
@@ -90,20 +99,20 @@ public class AnalyzerTest {
 		defaultHand[1].setValue(10);
 		defaultHand[2].setValue(10);
 		
-		assertTrue(Analyzer.isThreeOfKind(defaultHand));
+		assertTrue(Analyzer.isThreeOfKind(iHand));
 		
 		// test (9, 10, 10, 10, A)
 		defaultHand[0].setValue(9);
 		defaultHand[3].setValue(10);
 		
-		assertTrue(Analyzer.isThreeOfKind(defaultHand));
+		assertTrue(Analyzer.isThreeOfKind(iHand));
 		
 		// test (9, 10, A, A, A)
 		defaultHand[0].setValue(9);
 		defaultHand[2].setValue(14);
 		defaultHand[3].setValue(14);
 		
-		assertTrue(Analyzer.isThreeOfKind(defaultHand));
+		assertTrue(Analyzer.isThreeOfKind(iHand));
 
 	}
 	
@@ -115,21 +124,21 @@ public class AnalyzerTest {
 		defaultHand[2].setValue(11);
 		defaultHand[3].setValue(11);
 		
-		assertTrue(Analyzer.isTwoPair(defaultHand));
+		assertTrue(Analyzer.isTwoPair(iHand));
 		
 		// test (10, 10, 11, A, A)
 		defaultHand[1].setValue(10);
 		defaultHand[2].setValue(11);
 		defaultHand[3].setValue(14);
 		
-		assertTrue(Analyzer.isTwoPair(defaultHand));
+		assertTrue(Analyzer.isTwoPair(iHand));
 		
 		// test (10, 11, 11, A, A)
 		defaultHand[1].setValue(11);
 		defaultHand[2].setValue(11);
 		defaultHand[3].setValue(14);
 		
-		assertTrue(Analyzer.isTwoPair(defaultHand));
+		assertTrue(Analyzer.isTwoPair(iHand));
 	}
 	
 	@Test
@@ -137,19 +146,19 @@ public class AnalyzerTest {
 		
 		// test (10, 10, 12, 13, A)
 		defaultHand[1].setValue(10);
-		assertTrue(Analyzer.isOnePair(defaultHand));
+		assertTrue(Analyzer.isOnePair(iHand));
 		
 		// test (10, 12, 12, 13, 14)
 		defaultHand[1].setValue(12);
-		assertTrue(Analyzer.isOnePair(defaultHand));
+		assertTrue(Analyzer.isOnePair(iHand));
 		
 		// test (10, 12, 13, 13, 14)
 		defaultHand[2].setValue(13);
-		assertTrue(Analyzer.isOnePair(defaultHand));
+		assertTrue(Analyzer.isOnePair(iHand));
 		
 		// test (10, 12, 13, 14, 14)
 		defaultHand[3].setValue(14);
-		assertTrue(Analyzer.isOnePair(defaultHand));
+		assertTrue(Analyzer.isOnePair(iHand));
 		
 	}	
 	
@@ -160,12 +169,12 @@ public class AnalyzerTest {
 		defaultHand[1].setValue(10);
 		defaultHand[2].setValue(14);
 		defaultHand[3].setValue(14);
-		assertTrue(Analyzer.isFullHouse(defaultHand));
+		assertTrue(Analyzer.isFullHouse(iHand));
 		
 		// test (10, 10, 10, A, A)
 		defaultHand[2].setValue(10);
 		defaultHand[3].setValue(14);
-		assertTrue(Analyzer.isFullHouse(defaultHand));
+		assertTrue(Analyzer.isFullHouse(iHand));
 		
 	}
 	
