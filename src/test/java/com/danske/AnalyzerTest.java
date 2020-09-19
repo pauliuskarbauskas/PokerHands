@@ -151,6 +151,27 @@ public class AnalyzerTest {
 		defaultHand[3].setValue(14);
 		assertTrue(Analyzer.isOnePair(defaultHand));
 		
+	}	
+	
+	@Test
+	public void testFullHouse() {
+		
+		// test (10, 10, A, A, A)
+		defaultHand[1].setValue(10);
+		defaultHand[2].setValue(14);
+		defaultHand[3].setValue(14);
+		assertTrue(Analyzer.isFullHouse(defaultHand));
+		
+		// test (10, 10, 10, A, A)
+		defaultHand[2].setValue(10);
+		defaultHand[3].setValue(14);
+		assertTrue(Analyzer.isFullHouse(defaultHand));
+		
 	}
+	
+//	@Test
+//	public void testHighCard() {
+//		assertEquals(14, Analyzer.getHighCard(defaultHand));
+//	}
 
 }

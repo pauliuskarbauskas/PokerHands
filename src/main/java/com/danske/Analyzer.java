@@ -152,4 +152,31 @@ public class Analyzer {
 		return false;
 	}
 
+	/**
+	 * Determine if hand is full house
+	 * @param hand
+	 * @return boolean
+	 */
+	public static boolean isFullHouse(Card[] hand) {
+		
+		if (hand[0].getValue() == hand[1].getValue() && 
+			hand[2].getValue() == hand[3].getValue() &&
+			hand[2].getValue() == hand[4].getValue()) {
+			
+			return true;
+		}
+		
+		if (hand[0].getValue() == hand[1].getValue() && 
+			hand[0].getValue() == hand[2].getValue() &&
+			hand[3].getValue() == hand[4].getValue()) {
+				
+			return true;
+		}
+		
+		return false;
+	}
+	
+//	public static int getHighCard(Card[] hand) {
+//		return hand[4].getValue();
+//	}
 }
