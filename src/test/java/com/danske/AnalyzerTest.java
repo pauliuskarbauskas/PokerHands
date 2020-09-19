@@ -131,5 +131,26 @@ public class AnalyzerTest {
 		
 		assertTrue(Analyzer.isTwoPair(defaultHand));
 	}
+	
+	@Test
+	public void testOnePair() {
+		
+		// test (10, 10, 12, 13, A)
+		defaultHand[1].setValue(10);
+		assertTrue(Analyzer.isOnePair(defaultHand));
+		
+		// test (10, 12, 12, 13, 14)
+		defaultHand[1].setValue(12);
+		assertTrue(Analyzer.isOnePair(defaultHand));
+		
+		// test (10, 12, 13, 13, 14)
+		defaultHand[2].setValue(13);
+		assertTrue(Analyzer.isOnePair(defaultHand));
+		
+		// test (10, 12, 13, 14, 14)
+		defaultHand[3].setValue(14);
+		assertTrue(Analyzer.isOnePair(defaultHand));
+		
+	}
 
 }

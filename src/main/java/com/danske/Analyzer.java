@@ -104,6 +104,11 @@ public class Analyzer {
 		return false;
 	}
 	
+	/**
+	 * Determines if hand is Two pair
+	 * @param hand
+	 * @return boolean
+	 */
 	public static boolean isTwoPair(Card[] hand) {
 		
 		if (hand[0].getValue() == hand[1].getValue() && hand[2].getValue() == hand[3].getValue()) {
@@ -115,6 +120,32 @@ public class Analyzer {
 		}
 		
 		if (hand[1].getValue() == hand[2].getValue() && hand[3].getValue() == hand[4].getValue()) {
+			return true;
+		}
+		
+		return false;
+	}
+	
+	/**
+	 * Determines if hand has One Pair
+	 * @param hand
+	 * @return boolean
+	 */
+	public static boolean isOnePair(Card[] hand) {
+		
+		if (hand[0].getValue() == hand[1].getValue()) {
+			return true;
+		}
+		
+		if (hand[1].getValue() == hand[2].getValue()) {
+			return true;
+		}
+		
+		if (hand[2].getValue() == hand[3].getValue()) {
+			return true;
+		}
+		
+		if (hand[3].getValue() == hand[4].getValue()) {
 			return true;
 		}
 		
