@@ -83,15 +83,28 @@ public class AnalyzerTest {
 		
 	}
 	
-//	@Test
-//	public void testThreeOfKind() {
-//		
-//		// reset to three of kind (10, 10, 10, K, A)
-//		defaultHand[1].setValue(10);
-//		defaultHand[2].setValue(10);
-//		
-//		assertTrue(Analyzer.isThreeOfKind(defaultHand));
-//
-//	}
+	@Test
+	public void testThreeOfKind() {
+		
+		// reset to three of kind (10, 10, 10, K, A)
+		defaultHand[1].setValue(10);
+		defaultHand[2].setValue(10);
+		
+		assertTrue(Analyzer.isThreeOfKind(defaultHand));
+		
+		// test (9, 10, 10, 10, A)
+		defaultHand[0].setValue(9);
+		defaultHand[3].setValue(10);
+		
+		assertTrue(Analyzer.isThreeOfKind(defaultHand));
+		
+		// test (9, 10, A, A, A)
+		defaultHand[0].setValue(9);
+		defaultHand[2].setValue(14);
+		defaultHand[3].setValue(14);
+		
+		assertTrue(Analyzer.isThreeOfKind(defaultHand));
+
+	}
 
 }

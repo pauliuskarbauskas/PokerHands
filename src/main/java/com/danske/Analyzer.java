@@ -78,17 +78,25 @@ public class Analyzer {
 		
 	}
 	
-//	public static boolean isThreeOfKind(Card[] hand) {
-//		
-//		boolean result = true;
-//		
-//		for (int i = 0; i < 2; i++) {
-//			if (hand[i].getValue() != hand[i+1].getValue()) {
-//				result = false;
-//			}
-//		}
-//		
-//		return result;
-//	}
+	public static boolean isThreeOfKind(Card[] hand) {
+		
+		int firstCard = hand[0].getValue();
+		int secondCard = hand[1].getValue();
+		int thirdCard = hand[4].getValue();
+		
+		if(firstCard == hand[1].getValue() && firstCard == hand[2].getValue()) {
+			return true;
+		}
+		
+		if(secondCard == hand[2].getValue() && secondCard == hand[3].getValue()) {
+			return true;
+		}
+		
+		if(thirdCard == hand[3].getValue() && thirdCard == hand[4].getValue()) {
+			return true;
+		}
+
+		return false;
+	}
 
 }
