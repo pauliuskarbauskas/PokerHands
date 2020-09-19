@@ -1,4 +1,4 @@
-package com.danske.poker;
+package com.danske;
 
 public class Poker {
 
