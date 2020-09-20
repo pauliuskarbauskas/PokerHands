@@ -13,13 +13,13 @@ public class Helper {
 	 * Reads values from poker.txt file
 	 * @return List of lines
 	 */
-	public static List<String> readHands() {
+	public static List<String> readHands(String fileName) {
 
 		List<String> data = new ArrayList<String>();
 		
 		try {
 			
-			File file = new File("poker.txt");
+			File file = new File(fileName);
 			Scanner scanner = new Scanner(file);
 			
 			while(scanner.hasNextLine()) {

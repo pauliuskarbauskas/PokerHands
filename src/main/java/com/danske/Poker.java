@@ -6,7 +6,7 @@ public class Poker {
 
 	public static void main(String[] args) {
 
-		List<String> data = Helper.readHands();
+		List<String> data = Helper.readHands("poker.txt");
 		int result = 0;
 		
 		for (String a: data) {

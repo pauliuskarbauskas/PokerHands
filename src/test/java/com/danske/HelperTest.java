@@ -7,9 +7,15 @@ import java.util.List;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Test;	
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.rules.ExpectedException;	
 
 public class HelperTest {
+	
+    /** The exception rule. */
+    @Rule
+    public ExpectedException iThrown = ExpectedException.none();
 
 	@Before
 	public void setUp() throws Exception {
@@ -22,7 +28,7 @@ public class HelperTest {
 	@Test
 	public void testReadHandsMethodReadsDataFromFile() {
 		
-		List<String> data = Helper.readHands();
+		List<String> data = Helper.readHands("poker.txt");
 
 		assertNotNull(data);	
 		assertEquals(1000, data.size());
@@ -69,14 +75,15 @@ public class HelperTest {
 	}
 	
 	@Test
-	public void testParseHandsParsesCardValuesFromJackToAce() {
+	public void testParseHandsParsesCardValuesFromTenToAce() {
 		
-		List<Hand> parsedHands = Helper.parseHands("1C 2D 3H 4S 5S JC QD KH AS AC");
+		List<Hand> parsedHands = Helper.parseHands("1C 2D 3H 4S 5S TC JC QD KH AS");
 		
-		assertEquals(11, parsedHands.get(1).getHand()[0].getValue());
-		assertEquals(12, parsedHands.get(1).getHand()[1].getValue());
-		assertEquals(13, parsedHands.get(1).getHand()[2].getValue());
-		assertEquals(14, parsedHands.get(1).getHand()[3].getValue());
+		assertEquals(10, parsedHands.get(1).getHand()[0].getValue());
+		assertEquals(11, parsedHands.get(1).getHand()[1].getValue());
+		assertEquals(12, parsedHands.get(1).getHand()[2].getValue());
+		assertEquals(13, parsedHands.get(1).getHand()[3].getValue());
+		assertEquals(14, parsedHands.get(1).getHand()[4].getValue());
 		
 	}
 	
