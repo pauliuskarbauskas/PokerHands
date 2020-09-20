@@ -13,6 +13,10 @@ public class Hand {
 		hand = new Card[5];
 	}
 	
+	public Hand(Card[] hand) {
+		this.hand = hand;
+	}
+	
 	// Methods
 	public Card[] getHand() {
 		return hand;

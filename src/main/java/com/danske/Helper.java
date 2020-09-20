@@ -41,9 +41,9 @@ public class Helper {
 	 * @param line
 	 * @return a List of two hands
 	 */
-	public static List<Card[]> parseHands(String line) {
+	public static List<Hand> parseHands(String line) {
 		
-		List<Card[]> hands = new ArrayList<>();
+		List<Hand> hands = new ArrayList<>();
 		Card[] hand1 = new Card[5];
 		Card[] hand2 = new Card[5];
 		
@@ -60,8 +60,13 @@ public class Helper {
 		Arrays.sort(hand1);
 		Arrays.sort(hand2);
 		
-		hands.add(hand1);
-		hands.add(hand2);
+		Hand parsedHand1 = new Hand(hand1);
+		Hand parsedHand2 = new Hand(hand2);
+		
+//		System.out.println(parsedHand1);
+		
+		hands.add(parsedHand1);
+		hands.add(parsedHand2);
 		
 		return hands;
 	}

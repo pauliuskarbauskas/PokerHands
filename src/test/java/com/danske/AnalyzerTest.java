@@ -178,4 +178,13 @@ public class AnalyzerTest {
 		
 	}
 	
+	@Test
+	public void testHandRank() {
+		
+		Hand royal = new HandBuilder().withRoyalFlush(Suit.DIAMOND).build();
+		assertEquals(Rank.ROYAL, Analyzer.getRank(royal));
+		
+		
+	}
+	
 }
