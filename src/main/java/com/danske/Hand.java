@@ -6,12 +6,11 @@ public class Hand {
 	
 	// Instance variables
 	private Card[] hand;
-	private int rank;
+	private Rank rank;
 	
 	// Constructors
 	public Hand() {
 		hand = new Card[5];
-		rank = 0;
 	}
 	
 	// Methods
@@ -23,11 +22,11 @@ public class Hand {
 		this.hand = hand;
 	}
 	
-	public int getRank() {
+	public Rank getRank() {
 		return rank;
 	}
 
-	public void setRank(int rank) {
+	public void setRank(Rank rank) {
 		this.rank = rank;
 	}
 

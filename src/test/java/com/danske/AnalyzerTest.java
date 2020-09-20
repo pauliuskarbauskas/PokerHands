@@ -49,14 +49,14 @@ public class AnalyzerTest {
 		assertFalse(Analyzer.isHandFlush(iHand));
 	}
 	
-	@Test
-	public void testRoyalFlush() {
-		
-		assertTrue(Analyzer.isHandRoyalFlush(iHand));
-		
-		defaultHand[0].setValue(1);
-		assertFalse(Analyzer.isHandRoyalFlush(iHand));
-	}
+//	@Test
+//	public void testRoyalFlush() {
+//		
+//		assertTrue(Analyzer.isHandRoyalFlush(iHand));
+//		
+//		defaultHand[0].setValue(1);
+//		assertFalse(Analyzer.isHandRoyalFlush(iHand));
+//	}
 	
 	@Test
 	public void testStraightFlush() {
@@ -178,9 +178,4 @@ public class AnalyzerTest {
 		
 	}
 	
-//	@Test
-//	public void testHighCard() {
-//		assertEquals(14, Analyzer.getHighCard(defaultHand));
-//	}
-
 }
