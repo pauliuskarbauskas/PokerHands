@@ -255,10 +255,69 @@ public class AnalyzerTest {
 	}
 	
 	@Test
+	public void testCompareOnePair() {
+		
+		List<Hand> parsedHands = Helper.parseHands("2C 2D 3H 4S 5S 3C 3C 4D 7H AS");
+		assertFalse(Analyzer.analyze(parsedHands.get(0), parsedHands.get(1)));
+		
+		parsedHands = Helper.parseHands("2C 3D 3H 4S 5S 3C 4C 4D 7H AS");
+		assertFalse(Analyzer.analyze(parsedHands.get(0), parsedHands.get(1)));
+		
+		parsedHands = Helper.parseHands("2C 3D 4H 4S 5S 3C 4C 7D 7H AS");
+		assertFalse(Analyzer.analyze(parsedHands.get(0), parsedHands.get(1)));
+		
+		parsedHands = Helper.parseHands("2C 3D 4H 5S 5S 3C 4C 7D AH AS");
+		assertFalse(Analyzer.analyze(parsedHands.get(0), parsedHands.get(1)));
+		
+		parsedHands = Helper.parseHands("2C 3D 4H AS AD 3C 4C 7D KH KS");
+		assertTrue(Analyzer.analyze(parsedHands.get(0), parsedHands.get(1)));
+		
+		parsedHands = Helper.parseHands("3C 4D KH AS AD 3C 4C QD AH AS");
+		assertTrue(Analyzer.analyze(parsedHands.get(0), parsedHands.get(1)));
+		
+	}
+	
+	@Test
+	public void testCompareTwoPair() {
+		
+		List<Hand> parsedHands = Helper.parseHands("2C 2D 3H 3S 5S 3C 3C 4D 4H AS");
+		assertFalse(Analyzer.analyze(parsedHands.get(0), parsedHands.get(1)));
+		
+		parsedHands = Helper.parseHands("2C 3D 3H 4S 4S 3C 4C 4D 7H 7S");
+		assertFalse(Analyzer.analyze(parsedHands.get(0), parsedHands.get(1)));
+		
+		parsedHands = Helper.parseHands("2C 2D 4H 5S 5S 3C 3C 5D 7H 7S");
+		assertFalse(Analyzer.analyze(parsedHands.get(0), parsedHands.get(1)));
+		
+		parsedHands = Helper.parseHands("3C 3D 4H 5S 5S 2C 2C 7D 4H 4S");
+		assertTrue(Analyzer.analyze(parsedHands.get(0), parsedHands.get(1)));
+		
+		parsedHands = Helper.parseHands("3C 3D AH 5S 5S 3C 3C KD 5H 5S");
+		assertTrue(Analyzer.analyze(parsedHands.get(0), parsedHands.get(1)));
+		
+	}
+	
+	@Test
+	public void testHand1HasHigherRank() {
+		List<Hand> parsedHands = Helper.parseHands("TC JC QC KC AC 3C 3C 4D 4H AS");
+		assertTrue(Analyzer.analyze(parsedHands.get(0), parsedHands.get(1)));
+	}
+	
+	@Test
+	public void testHand1HasLowerRank() {
+		List<Hand> parsedHands = Helper.parseHands("3C 3C 4D 4H AS TC JC QC KC AC");
+		assertFalse(Analyzer.analyze(parsedHands.get(0), parsedHands.get(1)));
+	}
+	
+	@Test
+	public void testBothHandsHaveRoyalFlushesReturnsFalse() {
+		List<Hand> parsedHands = Helper.parseHands("TD JD QD KD AD TC JC QC KC AC");
+		assertFalse(Analyzer.analyze(parsedHands.get(0), parsedHands.get(1)));
+	}
+	
+	@Test
 	public void testHighCard() {
 		assertEquals(14, Analyzer.getHighCard(iHand));
 	}
-	
-	
 	
 }
