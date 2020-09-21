@@ -63,8 +63,6 @@ public class Helper {
 		Hand parsedHand1 = new Hand(hand1);
 		Hand parsedHand2 = new Hand(hand2);
 		
-//		System.out.println(parsedHand1);
-		
 		hands.add(parsedHand1);
 		hands.add(parsedHand2);
 		
